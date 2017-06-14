@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+		<head>
+				<script src="https://code.jquery.com/jquery-1.12.4.js" type="text/javascript"></script>
+				<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.css">
+				<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.js"></script>
+				<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+				<!-- <link rel="stylesheet" href="stylesheets/style.css" /> -->
+				<link rel="icon" type="static/images/newapp-icon.png" href="newapp-icon.png">
+				<title><img src="static/images/newapp-icon.png" ></img>Cloud Storage </title>
+				<!-- <link rel="icon" href="https://goo.gl/images/Aej1W0" type="image/x-icon"> -->
+				<div style="padding-left: 29%; height: 2%; background-color: #DAD0CE;">
+						<h1 style="padding-top: 2%;">Cloud Storage - Storage As A Service </h1>
+				</div>
+		</head>
+		<form action="#" enctype="multipart/form-data" method="post">
+			<div id="fileTab" style="padding-top: 3%;">
+					<table id="example" class="display" cellspacing="0" width="100%">
+						<thead>
+								<tr>
+										<th>
+
+										</th>
+										<th>
+												Name
+										</th>
+										<th>
+												Size
+										</th>
+										<th>
+												Lastmodified Date
+										</th>
+								</tr>
+						</thead>
+							<tbody>
+									%for fileName in filesCloudStorage:
+											<tr>
+													<td>
+															<input type="checkbox" name="check" value="{{fileName['name']}}">
+													</td>
+													<td>
+															{{fileName['name']}}
+													</td>
+													<td>
+															{{fileName['bytes']}}
+													</td>
+													<td>
+															{{fileName['last_modified']}}
+													</td>
+											</tr>
+									%end
+							</tbody>
+					</table>
+			</div>
+			<div style="padding-top: 4%;">
+					Choose file from your computer :
+					<input type="file" name="datafile" size="40" multiple>
+			</div>
+			<table  style="width: 100%; padding-top: 4%;">
+				<tr>
+					<td>
+							<div>
+									<input name="submit" type="submit" value="Store to Cloud" style="width: 50%;">
+							</div>
+					</td>
+					<td>
+							<div>
+									<input name="submit" type="submit" value="Download" style="width: 75%;">
+							</div>
+					</td>
+					<td>
+							<div>
+									<input name="submit" type="submit" value="Delete" style="width: 100%;">
+							</div>
+					</td>
+				</tr>
+			</table>
+			<div style="padding-top: 8%;">
+
+		</div>
+		</form>
+		<script>
+				$(document).ready(function() {
+						$('#example').DataTable( {
+								columnDefs: [ {
+										orderable: false,
+										className: 'select-checkbox',
+										targets:   0
+								} ],
+								select: {
+										style:'os',
+										selector:'td:first-child'
+								},
+								order: [[ 1, 'asc' ]]
+						} );
+				} );
+		</script>
+</html>
